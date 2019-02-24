@@ -7,3 +7,4 @@ script:
   - cargo fmt --verbose --all -- --check
   - cargo build --verbose --all
   - cargo test --verbose --all
+
