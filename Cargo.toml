@@ -1,0 +1,9 @@
+[package]
+name = "mediawiki_dump_parser"
+version = "0.0.1"
+authors = ["Vee Satayamas <vsatayamas@gmail.com>"]
+license = "BSD-2-Clause"
+edition = "2018"
+
+[dependencies]
+xml-rs = "0.8"
