@@ -4,6 +4,6 @@ rust:
 before_script:
   - rustup component add rustfmt
 script:
-  - cargo fmt -- --write-mode=diff
+  - cargo fmt --verbose --all -- --check
   - cargo build --verbose --all
   - cargo test --verbose --all
