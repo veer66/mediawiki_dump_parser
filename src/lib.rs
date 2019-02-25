@@ -108,3 +108,30 @@ impl<R: Read> Iterator for Parser<R> {
         }
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::Parser;
+    use std::io::BufReader;
+
+    static BASIC_XML: &'static str = "<mediawiki>
+<page>
+<title>TITLE</title>
+<revision>
+<text>TEXT</text>
+</revision>
+</page>
+</mediawiki>";
+
+    #[test]
+    fn basic_title_and_revision_with_text() {
+        let reader = BufReader::new(BASIC_XML.as_bytes());
+        let mut parser = Parser::new(reader);
+        let page = parser.next();
+        assert!(page.is_some());
+        let page = page.unwrap();
+        assert_eq!(page.title, "TITLE");
+        assert_eq!(page.revisions.len(), 1);
+        assert_eq!(page.revisions[0].text, "TEXT");
+    }
+}
